@@ -6,7 +6,7 @@ tags: cnn computer-vision self-supervised
 
 
 
-Deep learning has proved to be very effective in computer vision problems. Neural network these days can even [surpass human level accuracy in some tasks(check figure 2)](https://arxiv.org/pdf/1706.06969.pdf). Most of these networks use CNN(convolutional neural network) as their basic structure. The performance of these CNNs depends on:  
+Deep learning has proved to be very effective in computer vision problems. Neural network these days can even [surpass human level accuracy in some tasks](https://arxiv.org/pdf/1706.06969.pdf). Most of these networks use CNN(convolutional neural network) as their basic structure. The performance of these CNNs depends on:  
 
 - Their capability i.e the architecture
 - The amount of labelled training data
@@ -21,51 +21,61 @@ One solution to this problem is [transfer learning](https://en.wikipedia.org/wik
 >
 > -- wikipedia
 
-Using transfer learning we can re-train a model trained to solve one problem, also called pretrained model, to solve another similar problem. For example, we can use a model trained to classify plant leaves to classify plant diseases. But, the problem with this approach is, we may not find a good pretrained model for the task we are trying to perform. Let's say we want do some domain specific or novel task like segmenting specific region from brain CT scan images, then it is hard to find a good(or any)  pre-trained model that we can use for this task. What do we do in such cases? **The answer is, we can leverage self supervised technique to learn useful features from unlabelled data**.
+Using transfer learning we can re-train a model trained to solve one problem, also called pretrained model, to solve another similar problem. For example, we can use a model trained to classify plant leaves and re-train it to classify plant diseases. But, the problem with this approach is, we may not find a good pretrained model for the task we are trying to perform. Let's say we want do some domain specific or novel task like segmenting specific region from brain CT scan images, then it is hard to find a good(or any)  pre-trained model that we can use for this task. What do we do in such cases? **The answer is, we can leverage self supervised technique to learn useful features from unlabelled data**.
 
 
 
 ## Self supervised learning
 
-On comparing labelled data with unlabelled data, we will find that, the proportion of unlabelled data is much higher than that of labelled data. 
+On comparing labelled data with unlabelled data on the internet, we will find that, the proportion of unlabelled data is much higher than that of labelled data. 
 
 ![data_in_internet](../images/2021-05-25-ssl-cv/data_in_internet.png)
 
-Self supervised learning is a technique that allows us to use the unlabelled data present in the internet or our local devices to train our models to learn features. 
+**Self supervised learning is a technique that allows us to use the unlabelled data present in the internet or our local devices to train our models in order to learn features**. 
 
-Before discussing self supervised learning, let's define some terms that are crucial to self supervised learning.
+Before formally defining self supervised learning, let's define some terminologies.
 
-- **Pretext Task**:   
+- **Pretext Task**   
 
   Pretext task is a dummy task on which a networks is trained to learn useful features. The pretext task uses pseudo labels for training.
 
-- **Downstream Task**:
+- **Downstream Task**
 
   Downstream task is the actual task that we want to train and evaluate our model on. When we have scarce labelled data, the downstream task will benefit from the features learned while training for the pretext task. The downstream task requires labelled data for training.  
 
 - **Pseudo Label**
 
-  Pseudo label are the automatically generated labels based on data attributes for pretext tasks. 
+  Pseudo label are the automatically generated labels based on data attributes for pretext tasks. It is important to note that these are not human generated labels.
 
-Self supervised learning is the subset of unsupervised learning. It is the method in which a neural network is trained using pseudo label to solve the pretext task. While solving the pretext task, the network learns features. The network is finally trained on human labelled data to solve the downstream task.
+Self supervised learning is the subset of unsupervised learning. It is the method in which a neural network is trained using pseudo label to solve the pretext task. While solving the pretext task, the network learns features. This network is finally trained on human labelled data to solve the downstream task.
 
+Below, we will discuss some common pretext and downstream task used for self supervised learning in computer vision. 
 
+## Common pretext tasks used for self supervised learning
 
-The <authors hypothesize that the> residual mappings are much convenient to optimize than the original unreferenced mapping. If the identity mapping were optimal, then it is easier for the network to simply push the weights corresponding to the residual to zero instead of fitting an identity mapping using nonlinear layers.
+### [Solving Jigsaw Puzzle](https://arxiv.org/pdf/1603.09246.pdf)
 
+In this method, 9 different fixed-size patches from an image are extracted. These patches are then sent to a function which rearranges them in any one of **k** different permutations. The number of permutations,**k**, is fixed and is << **9!**(i.e the total possible rearrangements that can be done with 9 patches). Each permuation has a corresponding label attached to it. The rearranged images and the corresponding labels are sent to a CNN which is trained to predict the corresponding label.
 
+![data_in_internet](../images/2021-05-25-ssl-cv/solving-jigsaw-puzzle.png)
 
-**But, in case of a neural networks, is an identity mapping the optimal function?**. The answer is no, identity mapping is not the optimal function. However, experiments show that, in case of residual networks, the layer response is close to zero indicating that the optimal function is very close to the identity mapping and is obtained my making minor adjustments to the identity mapping.  
+This network trained to solve the jigsaw puzzle as a prpetext can then be used for training image segmentation or image classification model as a downstream task.
 
-![Layer response in deep residual networks](/images/2021-03-10-resnet/layer-response.png)
+### [Image Colorization](https://arxiv.org/pdf/1603.08511.pdf)
 
+Image colorization refers to predicting the colorized version of the grayscale image.
 
+![data_in_internet](../images/2021-05-25-ssl-cv/image-colorization.png)
 
-The above figure compares the layer response of  residual network with non-residual counterparts. The bottom figure represents the layers response arragned in descending order. Layer response for residual networks is low and close to zero compared to the plain networks. The response is even lower in case of deeper residual networks. 
+In this task, the network is trained to predict the colored version of the grayscale images. Getting dataset for this task is fairly easy. We can download RGB images from the internet and then convert them to their grayscale version. 
 
+To sensibly colorize the the grayscale image, the network needs to recognize unique objects within an image, different parts within an object, and group pixels of the same part together. This complexity of image colorization forces network to learn useful visual features which can then be used for solving the downstream tasks. 
 
+Image colorization can be performed by employing GAN or an encoder-decoder based CNN. A simple architecture for encoder-decoder based CNN is shown below.
 
-Hence, since the optimal function is close to the identity mapping, residual units help to the network converge faster and make the deep network easier to optimize. 
+![data_in_internet](../images/2021-05-25-ssl-cv/image-colorization-cnn.jpg)
+
+<div align='right' font="6px">(image credits: <a href = "https://arxiv.org/pdf/1603.08511.pdf">Colorful image colorization</a></div>
 
 
 
