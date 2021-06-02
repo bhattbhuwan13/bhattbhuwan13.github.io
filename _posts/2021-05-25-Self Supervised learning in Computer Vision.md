@@ -75,12 +75,26 @@ Image colorization can be performed by employing GAN or an encoder-decoder based
 
 ![data_in_internet](../images/2021-05-25-ssl-cv/image-colorization-cnn.jpg)
 
-<div align='right' font="6px">(image credits: <a href = "https://arxiv.org/pdf/1603.08511.pdf">Colorful image colorization</a></div>
+<div align='right' font="6px">image credits: <a href = "https://arxiv.org/pdf/1603.08511.pdf">Colorful image colorization</a></div>
+
+### [Context/Relative Position prediction](https://arxiv.org/pdf/1505.05192.pdf)
+
+Context prediction is the task of predicting relative position of an image patch with respect to another patch from the same patch. 
+
+![data_in_internet](../images/2021-05-25-ssl-cv/context-prediction-example.jpg)
+
+<div align='right' font="6px">image credits: <a href = "https://arxiv.org/pdf/1505.05192.pdf">Unsupervised Visual Representation Learning by Context Prediction</a></div>
+
+The above image shows the data generation process for context prediction. We extract a patch(blue bordered) from an image. We then take another patch from the image(red bordered). This second patch can be taken from any one of 8 different locations(top left, top center, top right, center left, ...bottom right) with respect to the first patch. Depending upon the position of the second patch, a numerical label, from 1 to 8, is generated for the pair of patches. Finally, a CNN is trained to predict the relative position of the image patches.
+
+For the network to do well in this task, it needs to learn to recognize object and their parts. Experiments have shown that a network initially trained using such unsupervised technique then on the downstream task perform better than a network trained solely on the dataset for the actual downstream task.
 
 
 
 ## References
 
-1. [Going Deeper with Convolutions, Szegedy et. al.](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43022.pdf)
+1. [Self-supervised Visual Feature Learning with Deep Neural Networks: A Survey, Jing et al.](https://arxiv.org/abs/1902.06162)
+2. [Unsupervised Learning of Visual Representations by Solving Jigsaw Puzzles, Noroozi et al.](https://arxiv.org/pdf/1603.09246.pdf)
+3. [Colorful Image Colorization, Zhang et. al.](https://arxiv.org/pdf/1603.08511.pdf)
+4. [Unsupervised Visual Representation Learning by Context Prediction](https://arxiv.org/pdf/1505.05192.pdf)
 
-2. [Deep Residual Learning for Image Recognition, He et. al.](https://arxiv.org/pdf/1512.03385.pdf)

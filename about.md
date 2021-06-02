@@ -11,4 +11,4 @@ adversarial networks.
 I will add few things later.
 ### Contact me
 
-[bhattbhuwan13@outlook.com](mailto:bhattbhuwan13@outlook.com)
+[bhuwan@bhuwanbhatt.com](mailto:bhuwan@bhuwanbhatt.com)
