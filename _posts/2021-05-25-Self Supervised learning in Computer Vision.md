@@ -53,9 +53,11 @@ Below, we will discuss some common pretext and downstream task used for self sup
 
 ## Common pretext tasks used for self supervised learning
 
+Now, let's look at some common pretext task used in computer vision.
+
 ### [Solving Jigsaw Puzzle](https://arxiv.org/pdf/1603.09246.pdf)
 
-In this method, 9 different fixed-size patches from an image are extracted. These patches are then sent to a function which rearranges them in any one of **k** different permutations. The number of permutations,**k**, is fixed and is << **9!**(i.e the total possible rearrangements that can be done with 9 patches). Each permuation has a corresponding label attached to it. The rearranged images and the corresponding labels are sent to a CNN which is trained to predict the corresponding label.
+In this method, 9 different fixed-size patches from an image are extracted. These patches are then sent to a function which rearranges them in any one of **k** different permutations. The number of permutations,**k**, is fixed and is $$<<$$ **9!**(i.e the total number of possible rearrangements that can be done with 9 patches). Each permuation has a corresponding label attached to it. The rearranged images are sent to a CNN which is trained to predict the corresponding label.
 
 ![data_in_internet](../images/2021-05-25-ssl-cv/solving-jigsaw-puzzle.png)
 
