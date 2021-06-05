@@ -3,6 +3,7 @@ layout: post
 title: Self supervised learning in computer vision
 tags: cnn computer-vision self-supervised 
 image: ../images/2021-05-25-ssl-cv/og.jpeg
+photo: /images/2021-05-25-ssl-cv/og.jpeg
 ---
 
 Deep learning has proved to be very effective in computer vision problems. Neural network these days can even [surpass human level accuracy in some tasks](https://arxiv.org/pdf/1706.06969.pdf). Most of these networks use CNN(convolutional neural network) as their basic structure. The performance of these CNNs depends on:  
