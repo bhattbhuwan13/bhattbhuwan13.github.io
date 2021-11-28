@@ -4,8 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a machine learning engineer intrested in computer vision and generative
-adversarial networks. 
+I am a machine learning engineer intrested in NLP, CV, GAN, and MLOps. 
 
 
 ### Contact me
