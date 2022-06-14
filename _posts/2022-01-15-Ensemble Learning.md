@@ -4,9 +4,8 @@ title: Ensemble Learning
 tags: ensemble machine-learning decision-tree random-forest
 ---
 
-# Introduction
 
-[Bias variance tradeoff](https://en.wikipedia.org/wiki/Bias–variance_tradeoff) is one fo the well known problem in machine learning. According to wikipedia,  
+[Bias variance tradeoff](https://en.wikipedia.org/wiki/Bias–variance_tradeoff) is one of the well known problem in machine learning. According to wikipedia,  
 
    >**Bias–Variance problem** is the conflict in trying to simultaneously minimize these two sources of error that prevent supervised learning algorithms from generalizing beyond their training set.
     
@@ -39,13 +38,10 @@ Now, we will use scikit-learn to create a bagging classifier to classify iris-sp
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, BaggingClassifier, GradientBoostingClassifier,AdaBoostClassifier
+from sklearn.ensemble import BaggingClassifier
 from sklearn import datasets
 
 from sklearn.model_selection import train_test_split
-from sklearn import metrics
-from sklearn.model_selection import cross_val_score, cross_val_predict
-from sklearn.metrics import confusion_matrix
 ```
 Let's load the iris dataset from the `datasets` module in `scikit-learn`
 .
@@ -56,32 +52,45 @@ y = iris.target
 ```
 We now split the data into train and test set. The model will later be trained on the train set and evaluated on the test set.
 ```python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
 ```
 
 ### Training the decision tree classifier
 First, we will train a decision tree and later compare it with an ensemble formed by bagging of decision tree models. 
 ```python
-classifier = DecisionTreeClassifier(random_state=42)
-classifier.fit(X_train, y_train)
-classifier.score(X_train, y_train),classifier.score(X_test, y_test)
-```
+decision_tree_classifier = DecisionTreeClassifier(random_state=42)
+decision_tree_classifier.fit(X_train, y_train)
 
-```bash
-Output:  
-(1.0, 1.0)
+print("Train accuracy of decision tree = ", decision_tree_classifier.score(X_train, y_train))
+print("Test accuracy of decision tree = ", decision_tree_classifier.score(X_test, y_test))
 ```
+**Output**  
+```bash
+Train accuracy of decision tree =  1.0
+Test accuracy of decision tree =  0.95
+```
+We can see that the decision tree model clearly overfits. The train accuracy is 100% while the accuracy on the test set is only 95%.  Next, we will train and evaluate an ensemble.  
+
 ### Training an ensemble of decision trees
-Now, we will train a bagged model which will contain a collection of decision trees. 
+Now, we will train a bagged model which will contain 3 different decision trees.  
 ```python
-ensemble = BaggingClassifier(base_estimator=DecisionTreeClassifier(), n_estimators=100,
+ensemble = BaggingClassifier(base_estimator=DecisionTreeClassifier(), n_estimators=3,
                             bootstrap=True, random_state=42)
 ensemble.fit(X_train, y_train)
-ensemble.score(X_train,y_train),bag_clf.score(X_test,y_test)
+
+print("Train accuracy of ensemble = ", ensemble.score(X_train, y_train))
+print("Test accuracy of ensemble = ", ensemble.score(X_test, y_test))
 ```
 
+**Output**  
+```bash
+Train accuracy of decision tree =  0.98
+Test accuracy of decision tree =  0.95
+```
+
+We can see that, the even though the bagged model isn't 100% accurate in the train set, its accuracy is still 95% on the test set. The ensemble model has reduced the overfitting. The iris-dataset contains only 150 instances of data. If we had a larger dataset, the positive effects of training an ensemble model would be more apparent.  
 ## References
 
-1. [Going Deeper with Convolutions, Szegedy et. al.](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43022.pdf)
+1. [Ensemble Methods in Machine Learning, Thomas G. Dietterich](https://web.engr.oregonstate.edu/~tgd/publications/mcs-ensembles.pdf)
 
-2. [Deep Residual Learning for Image Recognition, He et. al.](https://arxiv.org/pdf/1512.03385.pdf)
+2. [A Study Of Ensemble Methods In Machine Learnin, Kim et. al.](http://cs229.stanford.edu/proj2015/222_report.pdf)
