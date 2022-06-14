@@ -40,7 +40,7 @@ Now, we will use scikit-learn to create a bagging classifier to classify iris-sp
 ```python
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, BaggingClassifier, GradientBoostingClassifier,AdaBoostClassifier
-from sklearn import datasets # import inbuild datasets
+from sklearn import datasets
 
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
@@ -56,22 +56,29 @@ y = iris.target
 ```
 We now split the data into train and test set. The model will later be trained on the train set and evaluated on the test set.
 ```python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 ```
 
 ### Training the decision tree classifier
 First, we will train a decision tree and later compare it with an ensemble formed by bagging of decision tree models. 
 ```python
-classifier = DecisionTreeClassifier()
+classifier = DecisionTreeClassifier(random_state=42)
 classifier.fit(X_train, y_train)
 classifier.score(X_train, y_train),classifier.score(X_test, y_test)
 ```
 
 ```bash
 Output:  
-
+(1.0, 1.0)
 ```
-
+### Training an ensemble of decision trees
+Now, we will train a bagged model which will contain a collection of decision trees. 
+```python
+ensemble = BaggingClassifier(base_estimator=DecisionTreeClassifier(), n_estimators=100,
+                            bootstrap=True, random_state=42)
+ensemble.fit(X_train, y_train)
+ensemble.score(X_train,y_train),bag_clf.score(X_test,y_test)
+```
 
 ## References
 
