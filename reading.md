@@ -7,4 +7,4 @@ permalink: /reading/
 
 ### Currently Reading
 
-[] Designing Machine Learning Systems
+- [] Designing Machine Learning Systems
