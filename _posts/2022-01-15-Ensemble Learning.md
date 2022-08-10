@@ -31,6 +31,8 @@ Bagging, or bootstrap aggregating, combines models with low bias(strong learners
 ## Boosting
 Boosting is the technique of combining multiple weak(high bias) models in a sequence such that each of the model is trained to reduce the error made by the previous model of the sequence. Since models are trained to reduce the errors made by previous models in the sequence, there is no need for bootstrapping and hence a single dataset is sufficient. Adaptive boosting and gradient boosting are some of the most commonly used boosting techniques.  
 
+*Note: Stacking is also a method to form an ensemble but, we won't discuss that here.*
+
 # Hands-on Bagging
 Now, we will use scikit-learn to create a bagging classifier to classify iris-species. Let's get started.  
 
