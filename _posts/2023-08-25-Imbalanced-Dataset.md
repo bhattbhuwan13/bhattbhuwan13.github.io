@@ -3,9 +3,6 @@ layout: post
 title: Imbalanced dataset in machine learning
 tags: imbalanced-dataset machine-learning smote scikit-learn
 ---
-
-## Introduction
-
 Data is crucial to train machine learning(ML) models. An ML model is only as good as the data it feeds on. However, data used to train models may have several deformities, for example:
 
 - Missing values and outliers,
