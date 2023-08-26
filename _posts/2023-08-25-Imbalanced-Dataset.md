@@ -18,7 +18,8 @@ In this article, we will focus on the imbalanced dataset, its effect on the resu
 ### Imbalanced Dataset
 
 An imbalanced dataset consists of unevenly distributed classes. For example, if you are trying to predict if a tumour is benign or malignant, your dataset is likely to contain way more instances that are benign than are malignant.
-![imbalanced dataset](images/imbalanced-dataset/imabalanced-dataset.png)
+
+![imbalanced dataset](../images/imbalanced-dataset/imabalanced-dataset.png)
 
 We will discuss the effects of imbalanced dataset in a while but for now let’s focus on the cause of imbalanced datasets. Common causes include:
 
@@ -70,7 +71,7 @@ SMOTE, Synthetic Minority Over-sampling Technique, as the name specifies, is an 
 
 In SMOTE, the minority class is oversampled by taking an instance of the minority class and then introducing new instances in the line segment joining the instance with its *k* nearest neighbours.  By default the value of k is set to 5, but, depending upon the amount of oversampling required, instances from the k nearest neighbours are chosen randomly. The picture below illustrates the process.
 
-![imbalanced dataset](images/imbalanced-dataset/smote.png)
+![imbalanced dataset](../images/imbalanced-dataset/smote.png)
 
 
 Now, we will use [imbalanced-learn](https://imbalanced-learn.org/stable/#), an open source python library, to implement over sampling using SMOTE. We will use a dummy dataset to run our experiment. We recommend that you use google colab to follow the experiment. 
