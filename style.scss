@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+@import "fonts";
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -18,9 +19,9 @@ html {
 }
 
 body {
-	background: $white;
-  font: 18px/1.4 $helvetica;
-  color: $darkGray;
+	background: var(--color-bg);
+  font: 18px/1.4 $plexSans;
+  color: var(--color-text);
 }
 
 .container {
@@ -31,9 +32,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
-  color: $darkerGray;
-  font-weight: bold;
+  font-family: $plexMono;
+  color: var(--color-text-strong);
+  font-weight: 600;
 
   line-height: 1.7;
   margin: 1em 0 15px;
@@ -61,7 +62,7 @@ h3 {
 
 h4 {
   font-size: 18px;
-  color: $gray;
+  color: var(--color-text-muted);
 }
 
 p {
@@ -69,11 +70,11 @@ p {
 }
 
 a {
-  color: $blue;
+  color: var(--color-link);
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: var(--color-link);
   }
 }
 
@@ -103,7 +104,7 @@ em, i {
 }
 
 strong, b {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 img {
@@ -116,18 +117,19 @@ img {
 }
 
 .date {
+  font-family: $plexMono;
   font-style: italic;
-  color: $gray;
+  color: var(--color-text-muted);
 }
 
 // Specify the color of the selection
 ::-moz-selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--color-selection-text);
+  background: var(--color-selection-bg);
 }
 ::selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--color-selection-text);
+  background: var(--color-selection-bg);
 }
 
 // Nicolas Gallagher's micro clearfix hack
@@ -156,7 +158,7 @@ img {
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--color-border);
 
   @include mobile {
     text-align: center;
@@ -192,17 +194,17 @@ img {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: var(--color-text);
   cursor: pointer;
-  font-family: $helveticaNeue;
-  font-weight: 300;
+  font-family: $plexMono;
+  font-weight: 600;
   font-size: 28px;
   letter-spacing: 1px;
 }
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $gray;
+  color: var(--color-text-muted);
   font-size: 16px;
 
   @include mobile {
@@ -213,7 +215,7 @@ img {
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  font-family: $plexMono;
   font-size: 18px;
 
   @include mobile {
@@ -225,16 +227,26 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: var(--color-text);
     text-align: right;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 1px;
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: var(--color-link);
     }
   }
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  margin-left: 20px;
+  padding: 0;
+  vertical-align: middle;
 }
 
 //
@@ -243,7 +255,7 @@ nav {
 
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .posts > .post:last-child {
@@ -254,9 +266,9 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid var(--color-text-muted);
     padding: 0.1em 1em;
-    color: $gray;
+    color: var(--color-text-muted);
     font-size: 22px;
     font-style: italic;
   }
@@ -273,22 +285,15 @@ nav {
 
 .wrapper-footer {
   margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-alt);
 }
 
 footer {
   padding: 20px 0;
   text-align: center;
 }
-
-////////    CUSTOM CSS HERE
-p{
-    text-align: justify;
-}
-
-///////     CUSTOM CSS ENDS HERE
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start

@@ -3,21 +3,61 @@
 // VARIABLES
 //
 
-// Colors
-$blue: #4183C4;
+:root {
+  --color-bg: #fff;
+  --color-bg-alt: #eee;
+  --color-text: #333;
+  --color-text-strong: #222;
+  --color-text-muted: #666;
+  --color-border: #eee;
+  --color-link: #4183c4;
+  --color-selection-bg: #eee;
+  --color-selection-text: #000;
+}
 
-// Grays
-$black: #000;
-$darkerGray: #222;
-$darkGray: #333;
-$gray: #666;
-$lightGray: #eee;
-$white: #fff;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1a1a;
+    --color-bg-alt: #242424;
+    --color-text: #ccc;
+    --color-text-strong: #f2f2f2;
+    --color-text-muted: #999;
+    --color-border: #333;
+    --color-link: #6cb2eb;
+    --color-selection-bg: #333;
+    --color-selection-text: #fff;
+  }
+}
+
+// Manual overrides set by theme-toggle.js. These win over the media query
+// above because they come later in source order at equal specificity.
+:root[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-bg-alt: #242424;
+  --color-text: #ccc;
+  --color-text-strong: #f2f2f2;
+  --color-text-muted: #999;
+  --color-border: #333;
+  --color-link: #6cb2eb;
+  --color-selection-bg: #333;
+  --color-selection-text: #fff;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #fff;
+  --color-bg-alt: #eee;
+  --color-text: #333;
+  --color-text-strong: #222;
+  --color-text-muted: #666;
+  --color-border: #eee;
+  --color-link: #4183c4;
+  --color-selection-bg: #eee;
+  --color-selection-text: #000;
+}
 
 // Font stacks
-$helvetica: Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$georgia: Georgia, serif;
+$plexMono: "IBM Plex Mono", Menlo, Consolas, "Courier New", monospace;
+$plexSans: "IBM Plex Sans", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 // Mobile breakpoints
 @mixin mobile {

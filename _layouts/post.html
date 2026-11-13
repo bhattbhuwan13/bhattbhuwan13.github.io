@@ -2,8 +2,9 @@
 layout: default
 ---
 
-
+{% if page.has_math %}
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+{% endif %}
 <article class="post">
   <h1>{{ page.title }}</h1>
 
@@ -21,9 +22,6 @@ layout: default
     <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
   {% endfor %}
     ]</span>
-
-  {% include archive.html %}
-
 
 <script src="https://utteranc.es/client.js"
         repo="bhattbhuwan13/bhattbhuwan13.github.io"

@@ -9,6 +9,13 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <script>
+      (function () {
+        var t = localStorage.getItem('theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
@@ -30,6 +37,11 @@
             <a href="{{ site.baseurl }}/">Blog</a>
             <a href="{{ site.baseurl }}/about">About</a>
             <a href="{{ site.baseurl }}/reading">Reading</a>
+            <button type="button" id="theme-toggle" aria-label="Toggle color theme">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A5.4 5.4 0 0 1 12 3Z"/>
+              </svg>
+            </button>
           </nav>
         </header>
       </div>
@@ -48,6 +60,6 @@
     </div>
 
     <script src="{{ site.baseurl }}/copy-code.js" defer></script>
-    {% include analytics.html %}
+    <script src="{{ site.baseurl }}/theme-toggle.js" defer></script>
   </body>
 </html>
