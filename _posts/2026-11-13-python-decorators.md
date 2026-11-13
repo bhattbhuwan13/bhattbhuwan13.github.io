@@ -65,6 +65,8 @@ Notice that `wrapper` uses `func` even after `timer` has finished running. That'
 
 ## Step 3: The `@` Decorator Syntax
 
+![](../images/python-decorators/decorator-1-simple.png)
+
 Writing `fetch_weather = timer(fetch_weather)` works, but Python gives us a cleaner shortcut:
 
 ```python
@@ -77,6 +79,8 @@ def fetch_weather(city):
 `@timer` means exactly the same thing: "define this function, then pass it through `timer`." One thing to remember is that this happens **when the function is defined**, not when it's called.
 
 ## Step 4: Handling Any Arguments with `*args` and `**kwargs`
+
+![](../images/python-decorators/decorator-2-function-arguments.png)
 
 What if we add a `units` parameter to our fetcher? Our wrapper only accepts `city`, so it would break. The fix is to accept and pass along any arguments:
 
@@ -123,6 +127,8 @@ def timer(func):
 Now `fetch_weather.__name__` is `fetch_weather` again. Make `@functools.wraps` a habit in every decorator you write.
 
 ## Step 6: Python Decorators with Arguments
+
+![](../images/python-decorators/decorator-4-decorator-and-function-arguments.png)
 
 What if we want to choose the time unit, like `@timer(unit="ms")`? Since `timer(unit="ms")` runs first, it must *return* a decorator. That means adding one more layer, often called a **decorator factory**:
 
