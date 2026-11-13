@@ -70,7 +70,7 @@ sass:
 plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-  #- jekyll-seo-tag # For efficient jekyll
+  - jekyll-seo-tag # Canonical URL, OG/Twitter meta, and JSON-LD structured data
 
 # Exclude these files from your production _site
 exclude:
